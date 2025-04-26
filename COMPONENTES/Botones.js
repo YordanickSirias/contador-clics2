@@ -1,52 +1,55 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
-export default function Botones({ onIncrementar, onReiniciar, onDisminuir }) {
-  return (
-    <View style={styles.contenedor}>
-      <TouchableOpacity 
-        style={[styles.boton, styles.botonIncrementar]} 
-        onPress={onIncrementar}
-      >
-        <Text style={styles.textoBoton}>Clic</Text>
-      </TouchableOpacity>
+const Boton = ({ onPress, texto, estilo }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.boton, estilo]}>
+    <Text style={styles.textoBoton}>{texto}</Text>
+  </TouchableOpacity>
+);
 
-      <TouchableOpacity 
-        style={[styles.boton, styles.botonReiniciar]} 
-        onPress={onReiniciar}
-      >
+const Botones = React.memo(({ onIncrementar, onReiniciar, onDisminuir }) => (
+  <View style={styles.contenedor}>
+    <Boton 
+      onPress={onIncrementar} 
+      texto="Incrementar" 
+      estilo={styles.botonIncrementar} 
+    />
+    <Boton 
+      onPress={onReiniciar} 
+      texto="Reiniciar" 
+      estilo={styles.botonReiniciar} 
+    />
+    <Boton 
+      onPress={onDisminuir} 
+      texto="Disminuir" 
+      estilo={styles.botonDisminuir} 
+    />
+  </View>
+));
 
-        <Text style={styles.textoBoton}>Reiniciar</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity 
-        style={[styles.boton, styles.botonDisminuir]} 
-        onPress={onDisminuir}
-      >
-        
-        <Text style={styles.textoBoton}>- Disminuir</Text>
-        
-      </TouchableOpacity>
-    </View>
-  );
-}
+Botones.propTypes = {
+  onIncrementar: PropTypes.func.isRequired,
+  onReiniciar: PropTypes.func.isRequired,
+  onDisminuir: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start', // Cambiado a 'flex-start'
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 10, // Reducido el padding vertical superior
-    marginTop: -20, // Compensación negativa para acercar
+    paddingTop: 10,
+    marginTop: -20,
   },
   boton: {
-    paddingVertical: 12, // Reducido ligeramente
+    paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 8,
     width: '80%',
-    marginVertical: 6, // Reducido el espacio entre botones
+    marginVertical: 6,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
@@ -54,27 +57,23 @@ const styles = StyleSheet.create({
   botonIncrementar: {
     backgroundColor: '#4CAF50',
     borderWidth: 2,
-    borderColor: '#4CAF50',
-    borderWidth: 2,       // Grosor del borde
-    borderColor: 'white', // Color del borde (blanco)
+    borderColor: 'white',
   },
   botonReiniciar: {
     backgroundColor: '#2196F3',
     borderWidth: 2,
-    borderColor: '#2196F3',
-    borderWidth: 2,       // Grosor del borde
-    borderColor: 'white', // Color del borde (blanco)
+    borderColor: 'white',
   },
   botonDisminuir: {
     backgroundColor: '#F44336',
     borderWidth: 2,
-    borderColor: '#F44336',
-    borderWidth: 2,       // Grosor del borde
-    borderColor: 'white', // Color del borde (blanco)
+    borderColor: 'white',
   },
   textoBoton: {
-    fontSize: 16, // Tamaño ligeramente reducido
+    fontSize: 16,
     fontWeight: '600',
     color: '#FFFFFF',
   },
 });
+
+export default Botones;

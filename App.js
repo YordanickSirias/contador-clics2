@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Text } from 'react-native';
 import Contador from './COMPONENTES/Contador';
 import Botones from './COMPONENTES/Botones';
 
