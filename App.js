@@ -3,7 +3,7 @@ import { StyleSheet, View, Alert, Text } from 'react-native';
 import Contador from './COMPONENTES/Contador';
 import Botones from './COMPONENTES/Botones';
 
-// Custom Hook para la lógica del contador
+
 const useContador = (initialValue = 0) => {
   const [contador, setContador] = React.useState(initialValue);
 
@@ -35,11 +35,10 @@ export default function App() {
   );
 }
 
-// Styles se mantienen igual...
 const styles = StyleSheet.create({
 
   contenedor: {
-    marginBottom: 10, // Reducir este valor (o poner 0)
+    marginBottom: 10, 
   },
   contenedorPrincipal: {
     flex: 1,
